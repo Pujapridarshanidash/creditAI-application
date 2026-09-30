@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Credit Risk Assessment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-animation">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="url(#gradient)" stroke-width="2"/>
+                        <path d="M 35 50 Q 50 35 65 50" fill="none" stroke="url(#gradient)" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="50" cy="70" r="5" fill="url(#gradient)"/>
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <h1>CreditAI</h1>
+                    <p>AI-Powered Credit Risk Assessment</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <div class="form-card">
+                <form id="loanForm" class="loan-form">
+                    <div class="form-section">
+                        <h2 class="section-title">Personal Information</h2>
+                        
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" name="person_age" placeholder="Enter your age" required min="18" max="120">
+                            <span class="input-icon">👤</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="income">Annual Income ($)</label>
+                            <input type="number" id="income" name="person_income" placeholder="Enter annual income" required min="0" step="1000">
+                            <span class="input-icon">💰</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="homeOwnership">Home Ownership</label>
+                            <select id="homeOwnership" name="person_home_ownership" required>
+                                <option value="">Select home ownership status</option>
+                                <option value="RENT">Rent</option>
+                                <option value="OWN">Own</option>
+                                <option value="MORTGAGE">Mortgage</option>
+                                <option value="OTHER">Other</option>
+                            </select>
+                            <span class="input-icon">🏠</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="empLength">Employment Length (years)</label>
+                            <select id="empLength" name="person_emp_length" required>
+                                <option value="">Select employment length</option>
+                                <option value="0">Less than 1 year</option>
+                                <option value="1">1 year</option>
+                                <option value="2">2 years</option>
+                                <option value="3">3 years</option>
+                                <option value="4">4 years</option>
+                                <option value="5">5 years</option>
+                                <option value="6">6 years</option>
+                                <option value="7">7+ years</option>
+                            </select>
+                            <span class="input-icon">💼</span>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2 class="section-title">Loan Details</h2>
+
+                        <div class="form-group">
+                            <label for="loanIntent">Loan Intent</label>
+                            <select id="loanIntent" name="loan_intent" required>
+                                <option value="">Select loan intent</option>
+                                <option value="PERSONAL">Personal</option>
+                                <option value="EDUCATION">Education</option>
+                                <option value="MEDICAL">Medical</option>
+                                <option value="VENTURE">Venture</option>
+                                <option value="HOMEIMPROVEMENT">Home Improvement</option>
+                                <option value="DEBTCONSOLIDATION">Debt Consolidation</option>
+                            </select>
+                            <span class="input-icon">📋</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="loanGrade">Loan Grade</label>
+                            <select id="loanGrade" name="loan_grade" required>
+                                <option value="">Select loan grade</option>
+                                <option value="A">A (Excellent)</option>
+                                <option value="B">B (Good)</option>
+                                <option value="C">C (Fair)</option>
+                                <option value="D">D (Poor)</option>
+                                <option value="E">E (Very Poor)</option>
+                            </select>
+                            <span class="input-icon">⭐</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="loanAmount">Loan Amount ($)</label>
+                            <input type="number" id="loanAmount" name="loan_amnt" placeholder="Enter loan amount" required min="0" step="100">
+                            <span class="input-icon">💵</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="interestRate">Interest Rate (%)</label>
+                            <input type="number" id="interestRate" name="loan_int_rate" placeholder="Enter interest rate" required min="0" max="36" step="0.01">
+                            <span class="input-icon">📊</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="loanPercentIncome">Loan as % of Income</label>
+                            <input type="number" id="loanPercentIncome" name="loan_percent_income" placeholder="Enter percentage" required min="0" max="100" step="0.01">
+                            <span class="input-icon">📈</span>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2 class="section-title">Credit History</h2>
+
+                        <div class="form-group">
+                            <label for="defaultOnFile">Previous Default on File</label>
+                            <select id="defaultOnFile" name="cb_person_default_on_file" required>
+                                <option value="">Select option</option>
+                                <option value="Y">Yes</option>
+                                <option value="N">No</option>
+                            </select>
+                            <span class="input-icon">⚠️</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="credHistLength">Credit History Length (years)</label>
+                            <input type="number" id="credHistLength" name="cb_person_cred_hist_length" placeholder="Enter credit history length" required min="0" max="100" step="0.1">
+                            <span class="input-icon">📜</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span class="button-text">Assess Credit Risk</span>
+                        <span class="button-icon">→</span>
+                    </button>
+                </form>
+            </div>
+
+            <div class="result-container" id="resultContainer" style="display: none;">
+                <div class="result-card">
+                    <div class="result-header">
+                        <h2>Assessment Result</h2>
+                        <button class="close-btn" onclick="resetForm()">×</button>
+                    </div>
+
+                    <div class="result-content">
+                        <div class="risk-indicator" id="riskIndicator">
+                            <div class="risk-circle">
+                                <div class="risk-value" id="riskValue">0%</div>
+                            </div>
+                        </div>
+
+                        <div class="result-details">
+                            <div class="result-item">
+                                <span class="result-label">Risk Status</span>
+                                <span class="result-text result-status" id="resultStatus">-</span>
+                            </div>
+
+                            <div class="result-item">
+                                <span class="result-label">Risk Probability</span>
+                                <span class="result-text" id="resultProba">-</span>
+                            </div>
+
+                            <div class="result-item">
+                                <span class="result-label">Decision Threshold</span>
+                                <span class="result-text" id="resultThreshold">-</span>
+                            </div>
+
+                            <div class="result-item">
+                                <span class="result-label">Prediction</span>
+                                <span class="result-text" id="resultPrediction">-</span>
+                            </div>
+                        </div>
+
+                        <div class="risk-bar-container">
+                            <span class="risk-label">Low Risk</span>
+                            <div class="risk-bar">
+                                <div class="risk-bar-fill" id="riskBarFill"></div>
+                            </div>
+                            <span class="risk-label">High Risk</span>
+                        </div>
+                    </div>
+
+                    <button class="new-assessment-btn" onclick="resetForm()">New Assessment</button>
+                </div>
+            </div>
+
+            <div class="loading" id="loadingSpinner" style="display: none;">
+                <div class="spinner"></div>
+                <p>Analyzing your application...</p>
+            </div>
+
+            <div class="error-message" id="errorMessage" style="display: none;"></div>
+        </div>
+
+        <div class="footer">
+            <p>🔒 Your data is processed securely | Powered by Advanced ML Models</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
