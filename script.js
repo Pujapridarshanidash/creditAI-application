@@ -1,5 +1,6 @@
 // API Configuration
-const API_BASE_URL = 'http://localhost:8000'; // Change this to your deployed Render URL
+const API_BASE_URL = 'https://creditai-application.onrender.com';
+//'http://localhost:8000'; // Change this to your deployed Render URL
 
 // DOM Elements
 const loanForm = document.getElementById('loanForm');
